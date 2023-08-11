@@ -1,6 +1,7 @@
 {
   "name": "the_blog",
   "version": "0.1.0",
+  "homepage": "https://greyfrut1.github.io/greyfrut1.github.io",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -18,6 +19,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start": "react-scripts start",
     "build": "tailwindcss build -i src/index.css -o dist/style.css",
     "test": "react-scripts test",
@@ -43,6 +46,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
+    "gh-pages": "^6.0.0",
     "postcss": "^8.4.27",
     "tailwindcss": "^3.3.3"
   }
