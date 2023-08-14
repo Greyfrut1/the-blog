@@ -5,21 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function PilihanEditor() {
+function PilihanEditor({ objects, title }) {
   const rootAdress = "http://91.107.217.207";
-  const [teasers, setTeasers] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://91.107.217.207/editors-choice?_format=json")
-      .then((response) => {
-        const teasersData = response.data;
-        setTeasers(teasersData);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
   const settings = {
     infinite: true,
     speed: 1000,
@@ -47,11 +34,11 @@ function PilihanEditor() {
   return (
     <div className="font-poppins">
       <h3 className="text-base font-semibold text-[#121212]/30 uppercase mb-[40px] px-[12px] md:px-[28px]">
-        Pilihan Editor
+        {title}
       </h3>
       <div className="">
         <Slider {...settings}>
-          {teasers.map((item, index) => (
+          {objects.map((item, index) => (
             <div
               className="w-6/12 h-auto lg:h-[510px] lg:w-3/12 border-r border-[#e5e5e5]"
               key={index}

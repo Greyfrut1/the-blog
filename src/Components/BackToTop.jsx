@@ -28,7 +28,7 @@ function BackToTop() {
   return (
     <div id="hero-section">
       <button
-        className={`fixed bottom-5 right-4 px-3 py-2 bg-white font-poppins text-[13px] rounded text-[#1e1f57] ${
+        className={`fixed bottom-5 right-4 px-3 py-2 bg-white font-poppins text-[13px] rounded text-[#1e1f57] shadow-xl ${
           showTopBtn
             ? "opacity-100 scale-100 transition-all"
             : "opacity-0 scale-0 transition-all"

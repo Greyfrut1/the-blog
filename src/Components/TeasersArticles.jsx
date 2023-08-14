@@ -1,60 +1,37 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import striptags from "striptags";
 
-function TeasersArticles() {
-  const [firstTeaser, setFirstTeaser] = useState([]);
+function TeasersArticles({ firstTeaserArticle, teasersArticles }) {
   const rootAdress = "http://91.107.217.207";
-  const [teasers, setTeasers] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("http://91.107.217.207/blog-articles-first?_format=json")
-      .then((response) => {
-        const firstTeaserData = response.data[0];
-        setFirstTeaser(firstTeaserData);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("http://91.107.217.207/blog-articles-second?_format=json")
-      .then((response) => {
-        const teasersData = response.data;
-        setTeasers(teasersData);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
   return (
     <div className="flex flex-wrap">
       <a
-        href={rootAdress + firstTeaser.view_node}
+        href={rootAdress + firstTeaserArticle?.[0]?.view_node}
         className="lg:w-1/2 md:w-full px-0 md:px-[20px] mb-[40px]"
       >
         <div className="flex flex-wrap">
           <div className="lg:w-full md:w-1/2 w-ful pr-0 lg:pr-0 md:pr-[12px]">
-            <img src={rootAdress + firstTeaser.field_image_1} alt="alt"></img>
+            <img
+              src={rootAdress + firstTeaserArticle?.[0]?.field_image_1}
+              alt="alt"
+            ></img>
           </div>
           <div className="lg:w-full md:w-1/2 w-full px-0 lg:px-0 md:px-3">
             <div className="text-white/30 pb-2.5 pt-5 md:pt-0 lg:pt-5 text-sm">
-              {firstTeaser.field_date}
+              {firstTeaserArticle?.[0]?.field_date}
             </div>
             <h3 className="text-white/80 text-[32px] font-semibold leading-[42px] mb-4">
-              {firstTeaser.title_1}
+              {firstTeaserArticle?.[0]?.title_1}
             </h3>
             <p className="text-white/50 text-lg leading-[28px] font-light tracking-[0.6px]">
-              {striptags(firstTeaser.body)}
+              {striptags(firstTeaserArticle?.[0]?.body)}
             </p>
           </div>
         </div>
       </a>
       <div className="lg:w-1/2 md:w-full">
-        {teasers.map((item, index) => (
+        {teasersArticles.map((item, index) => (
           <a
             href={rootAdress + item.view_node}
             className="block first:mt-0 mt-0 px-0 md:px-8 lg:mt-8 [&:last-child>div]:border-b-0"
